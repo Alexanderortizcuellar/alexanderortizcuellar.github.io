@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — Alexander Ortiz</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+
+    <meta
+      name="description"
+      content="Contact Alexander Ortiz — Data Science student & developer."
+    />
+
+    <style>
+      /* ==============================
+       THEME TOKENS (WHITE + ORANGE)
+       ============================== */
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --border: #e9edf2;
+        --text: #0f172a;
+        --muted: #5b6472;
+        --accent: #ff7a00;
+        --accent-600: #e56e00;
+        --accent-50: #fff3e8;
+        --ring: #ffb26b;
+        --shadow-1: 0 6px 18px rgba(17, 17, 17, 0.06);
+        --shadow-2: 0 10px 30px rgba(17, 17, 17, 0.08);
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 10px;
+        --h1: clamp(26px, 3.8vw, 34px);
+        --small: 13.5px;
+        --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+        --dur-1: 160ms;
+        --dur-2: 260ms;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Arial,
+          sans-serif;
+        color: var(--text);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+      }
+
+      /* Subtle page vignettes for depth */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 220px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body::before {
+        top: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 122, 0, 0.07),
+          transparent 65%
+        );
+      }
+
+      body::after {
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 122, 0, 0.05),
+          transparent 60%
+        );
+      }
+
+      .container {
+        max-width: 1100px;
+        width: 100%;
+        padding: 28px clamp(18px, 3.2vw, 28px);
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ==============================
+       HEADER & NAV
+       ============================== */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 8px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: var(--bg);
+        padding: 1em;
+        border-radius: 12px;
+        box-shadow: var(--shadow-1);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        background: linear-gradient(135deg, var(--accent), #ff9e37);
+        color: #2b1700;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+          0 6px 18px rgba(255, 122, 0, 0.25);
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        padding: 4px;
+        border-radius: 999px;
+        background: #f7f9fc;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-1);
+      }
+
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 999px;
+        transition: color var(--dur-1) var(--easing),
+          background var(--dur-1) var(--easing),
+          transform var(--dur-1) var(--easing);
+        outline: none;
+      }
+
+      nav a:hover {
+        color: var(--text);
+        background: #fff;
+      }
+
+      nav a.active {
+        color: #2b1700;
+        background: linear-gradient(135deg, var(--accent), #ff9e37);
+        box-shadow: 0 6px 16px rgba(255, 122, 0, 0.25);
+      }
+
+      nav a:focus-visible {
+        box-shadow: 0 0 0 3px var(--ring);
+        background: #fff;
+        color: var(--text);
+      }
+
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 10px;
+      }
+
+      .menu-toggle:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      /* ==============================
+       LAYOUT
+       ============================== */
+      main {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: clamp(20px, 3.2vw, 28px);
+        margin-top: 24px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--surface);
+        padding: clamp(18px, 2.6vw, 24px);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-2);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::after {
+        /* soft highlights */
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            80% 60% at 90% 0%,
+            rgba(255, 122, 0, 0.06),
+            rgba(255, 122, 0, 0) 40%
+          ),
+          radial-gradient(
+            80% 60% at 0% 100%,
+            rgba(255, 122, 0, 0.04),
+            rgba(255, 122, 0, 0) 40%
+          );
+        pointer-events: none;
+      }
+
+      h1 {
+        margin: 0 0 8px 0;
+        font-size: var(--h1);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      /* ==============================
+       FORM
+       ============================== */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        animation: slideIn 520ms cubic-bezier(0.2, 0.9, 0.23, 1);
+      }
+
+      label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        background: #fff;
+        color: var(--text);
+        font-size: 14px;
+        transition: transform var(--dur-1) var(--easing),
+          box-shadow var(--dur-1) var(--easing),
+          border-color var(--dur-1) var(--easing);
+        margin-top: 7px;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        transform: translateY(-2px);
+        border-color: #ffd5b0;
+        box-shadow: 0 8px 22px rgba(17, 17, 17, 0.08);
+      }
+
+      textarea {
+        min-height: 140px;
+        resize: vertical;
+      }
+
+      .row {
+        display: flex;
+        gap: 12px;
+      }
+
+      .row > * {
+        flex: 1;
+      }
+
+      .hint {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 10px 14px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        transition: transform var(--dur-1) var(--easing),
+          box-shadow var(--dur-1) var(--easing),
+          background var(--dur-1) var(--easing),
+          color var(--dur-1) var(--easing),
+          border-color var(--dur-1) var(--easing);
+      }
+
+      .btn.primary {
+        background: linear-gradient(135deg, var(--accent), #ff9e37);
+        color: #2b1700;
+        box-shadow: 0 8px 18px rgba(255, 122, 0, 0.24),
+          inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(255, 122, 0, 0.3);
+        background: linear-gradient(135deg, #ff8614, #ffab4e);
+      }
+
+      .btn.ghost {
+        color: var(--accent-600);
+        background: #fff;
+        border-color: #ffd5b0;
+      }
+
+      .btn.ghost:hover {
+        background: var(--accent-50);
+        transform: translateY(-1px);
+        color: var(--accent-600);
+        box-shadow: var(--shadow-1);
+      }
+
+      .side-card {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .contact-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
+
+      .socials {
+        display: flex;
+        gap: 10px;
+      }
+
+      .chip {
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: #fff;
+        border: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--accent-600);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .notice {
+        padding: 10px;
+        border-radius: var(--radius-md);
+        background: #fff;
+        color: var(--accent-600);
+        border: 1px solid #ffd5b0;
+        display: none;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* Subtle underline animation */
+      a.underline {
+        position: relative;
+        color: var(--accent-600);
+        text-decoration: none;
+        border-bottom: 1px dashed #ffc796;
+      }
+
+      a.underline:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      /* ==============================
+       FOOTER
+       ============================== */
+      footer {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: var(--small);
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+      }
+
+      /* ==============================
+       RESPONSIVE
+       ============================== */
+      .mobile-nav {
+        display: none;
+      }
+
+      @media (max-width: 920px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-block;
+        }
+
+        .mobile-nav {
+          display: none;
+        }
+
+        .mobile-nav.open {
+          display: block;
+          margin-top: 12px;
+          padding: 12px;
+          border-radius: var(--radius-md);
+          background: #fff;
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow-1);
+          position: sticky;
+          top: 83px;
+          z-index: 100;
+        }
+
+        .mobile-nav nav {
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+        }
+
+        .mobile-nav nav a {
+          padding: 10px 12px;
+          border-radius: 10px;
+          display: block;
+          color: var(--muted);
+          text-decoration: none;
+        }
+
+        .mobile-nav nav a:hover {
+          background: var(--accent-50);
+          color: var(--text);
+        }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <a href="/" style="text-decoration: none">
+            <div class="logo">AO</div>
+          </a>
+          <div>
+            <div style="font-weight: 700">Alexander Ortiz</div>
+            <div style="font-size: 12px; color: var(--muted)">
+              Data Science Student · Software Developer
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Open navigation"
+          >
+            <img src="/icons/hamburger.svg" alt="" width="30" height="30" />
+          </button>
+          <nav>
+            <a href=".">Home</a>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html" class="active">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="card">
+          <h1>Contact me</h1>
+          <p class="muted">
+            Have a question about a project, collaboration, or want to say hi?
+            Send a message below
+          </p>
+
+          <form id="contactForm" novalidate>
+            <div class="row">
+              <div>
+                <label for="name">Full name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  aria-required="true"
+                  placeholder="Your full name"
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  aria-required="true"
+                  placeholder="you@domain.com"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label for="subject">Subject</label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                required
+                placeholder="Short subject"
+              />
+            </div>
+
+            <div>
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                placeholder="Tell me about your project or question..."
+              ></textarea>
+            </div>
+
+            <div class="hint">
+              By sending this message you consent to have your details used only
+              for contacting you back. No spam.
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="btn primary">
+                <i class="fa-solid fa-paper-plane"></i>Send message
+              </button>
+              <button type="button" id="clearBtn" class="btn ghost">
+                <i class="fa-solid fa-trash"></i>
+                Clear
+              </button>
+              <div class="notice" role="status" id="notice">
+                Message sent. Thank you!
+              </div>
+            </div>
+
+            <div style="margin-top: 8px; font-size: 13px; color: var(--muted)">
+              If this form doesn't work, email me directly at
+              <a class="underline" href="mailto:alexander.ortiz2@outlook.com"
+                >alexander.ortiz2@outlook.com</a
+              >
+            </div>
+
+            <!--
+            Integration notes:
+            - To actually receive messages you can use: Formspree (https://formspree.io), Netlify Forms, or another form backend.
+            - Example Formspree: set form action to https://formspree.io/f/<your-id> method="POST" and remove the JS send simulation.
+            - For Netlify Forms: add data-netlify="true" to the form and a hidden input name="form-name" value="Contact".
+          --></form>
+        </section>
+
+        <aside class="side-card">
+          <div class="card">
+            <h3 style="margin-top: 0">Direct contact</h3>
+            <div class="contact-item">
+              <div class="chip"><i class="fa-regular fa-envelope"></i></div>
+              <div>
+                <div style="font-weight: 700">Email</div>
+                <div class="muted">alexander.ortiz2@outlook.com</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="chip"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <div style="font-weight: 700">Phone</div>
+                <div class="muted">+57 315 572 4894</div>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="chip"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <div style="font-weight: 700">Location</div>
+                <div class="muted">Bogotá, Colombia</div>
+              </div>
+            </div>
+
+            <hr
+              style="
+                margin: 12px 0;
+                border: 0;
+                height: 1px;
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 122, 0, 0),
+                  rgba(255, 122, 0, 0.25),
+                  rgba(255, 122, 0, 0)
+                );
+              "
+            />
+
+            <div>
+              <h4 style="margin: 4px 0">Social</h4>
+              <div class="socials muted">
+                <a
+                  class="underline"
+                  href="https://github.com/alexanderortizcuellar"
+                  target="_blank"
+                  aria-label="GitHub"
+                >
+                  <i class="fa-brands fa-github fa-2x"></i>
+                </a>
+                <a
+                  class="underline"
+                  href="https://www.linkedin.com/in/alexander-ortiz-cuellar-52b892219"
+                  target="_blank"
+                  aria-label="LinkedIn"
+                >
+                  <i class="fa-brands fa-linkedin fa-2x"></i>
+                </a>
+                <a
+                  class="underline"
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  aria-label="Facebook"
+                >
+                  <i class="fa-brands fa-facebook fa-2x"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4 style="margin-top: 0">What I Can Help With</h4>
+            <ul class="muted">
+              <li>Web & desktop application development</li>
+              <li>Data dashboards and reporting</li>
+              <li>Automation and internal tools</li>
+              <li>Code reviews and technical consulting</li>
+            </ul>
+          </div>
+        </aside>
+      </main>
+
+      <footer>
+        © <span id="year"></span> Alexander Ortiz — Built with HTML & CSS.
+      </footer>
+    </div>
+
+    <script>
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // simple client-side validation & UX (simulation for static hosting)
+      const form = document.getElementById("contactForm");
+      const notice = document.getElementById("notice");
+      const clearBtn = document.getElementById("clearBtn");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const submit = form.querySelector('button[type="submit"]');
+        submit.disabled = true;
+        submit.textContent = "Sending...";
+        setTimeout(() => {
+          submit.disabled = false;
+          submit.textContent = "Send message";
+          notice.style.display = "block";
+          setTimeout(() => {
+            notice.style.display = "none";
+            form.reset();
+          }, 2200);
+        }, 900);
+      });
+
+      clearBtn.addEventListener("click", () => {
+        form.reset();
+      });
+
+      // Mobile nav creation + toggle (mirrors Home/About)
+      const toggle = document.querySelector(".menu-toggle");
+      const mobileNav = document.createElement("div");
+      mobileNav.id = "mobile-nav";
+      mobileNav.className = "mobile-nav";
+      mobileNav.innerHTML = `
+      <nav style="display:flex;flex-direction:column;gap:8px">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    `;
+      document
+        .querySelector(".container")
+        .insertBefore(mobileNav, document.querySelector("main"));
+
+      toggle.addEventListener("click", () => {
+        const open = mobileNav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      // Highlight current link (both navs)
+      function highlightLinks(scope) {
+        const links = scope.querySelectorAll("nav a[href]");
+        links.forEach((a) => {
+          const href = a.getAttribute("href");
+          const isRoot = href === "/" || href === ".";
+          const path = location.pathname;
+          if (
+            path.endsWith(href) ||
+            (isRoot && (path === "/" || path.endsWith("/index.html")))
+          ) {
+            a.classList.add("active");
+          }
+        });
+      }
+      highlightLinks(document);
+      highlightLinks(mobileNav);
+    </script>
+  </body>
+</html>

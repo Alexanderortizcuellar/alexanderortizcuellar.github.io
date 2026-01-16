@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Transparent background -->
+  <rect width="512" height="512" fill="none"/>
+  
+  <!-- Rounded square outline (optional, remove if you want only text) -->
+  <rect x="16" y="16" width="480" height="480" rx="90" ry="90" fill="none" stroke="#0B1120" stroke-width="8"/>
+  
+  <!-- Main text -->
+  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+        font-family="monospace" font-size="140" fill="#0B1120" font-weight="bold">
+    &lt;AO/&gt;
+  </text>
+  
+  <!-- Accent line -->
+  <rect x="102" y="380" width="308" height="12" rx="6" fill="#0B1120"/>
+</svg>

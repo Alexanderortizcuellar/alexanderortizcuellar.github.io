@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About — Alexander Ortiz</title>
+
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    />
+    <meta
+      name="description"
+      content="About Alexander Ortiz — Full Stack Developer & Data Science student"
+    />
+
+    <style>
+      /* ==============================
+       THEME TOKENS (WHITE + ORANGE)
+       ============================== */
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --border: #e9edf2;
+        --text: #0f172a;
+        --muted: #5b6472;
+        --accent: #ff7a00;
+        --accent-600: #e56e00;
+        --accent-50: #fff3e8;
+        --ring: #ffb26b;
+        --shadow-1: 0 6px 18px rgba(17, 17, 17, 0.06);
+        --shadow-2: 0 10px 30px rgba(17, 17, 17, 0.08);
+        --radius-lg: 16px;
+        --radius-md: 12px;
+        --radius-sm: 10px;
+        --h1: clamp(26px, 3.8vw, 34px);
+        --h3: clamp(18px, 2.2vw, 22px);
+        --h4: clamp(16px, 2vw, 18px);
+        --small: 13.5px;
+        --easing: cubic-bezier(0.2, 0.7, 0.2, 1);
+        --dur-1: 160ms;
+        --dur-2: 260ms;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Arial,
+          sans-serif;
+        color: var(--text);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+      }
+
+      /* Subtle page vignettes for depth */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        height: 220px;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      body::before {
+        top: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 122, 0, 0.07),
+          transparent 65%
+        );
+      }
+
+      body::after {
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 122, 0, 0.05),
+          transparent 60%
+        );
+      }
+
+      .container {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 28px clamp(18px, 3.2vw, 28px);
+        position: relative;
+        z-index: 1;
+        /* above vignettes */
+      }
+
+      /* ==============================
+       HEADER & NAV
+       ============================== */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 8px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: var(--bg);
+        padding: 1em;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .logo {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        background: linear-gradient(135deg, var(--accent), #ff9e37);
+        color: #2b1700;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+          0 6px 18px rgba(255, 122, 0, 0.25);
+      }
+
+      nav {
+        display: flex;
+        gap: 10px;
+        padding: 4px;
+        border-radius: 999px;
+        background: #f7f9fc;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-1);
+      }
+
+      nav a {
+        color: var(--muted);
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 999px;
+        transition: color var(--dur-1) var(--easing),
+          background var(--dur-1) var(--easing),
+          transform var(--dur-1) var(--easing);
+        outline: none;
+      }
+
+      nav a:hover {
+        color: var(--text);
+        background: #fff;
+      }
+
+      nav a.active {
+        color: #2b1700;
+        background: linear-gradient(135deg, var(--accent), #ff9e37);
+        box-shadow: 0 6px 16px rgba(255, 122, 0, 0.25);
+      }
+
+      nav a:focus-visible {
+        box-shadow: 0 0 0 3px var(--ring);
+        background: #fff;
+        color: var(--text);
+      }
+
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 0;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 6px;
+        border-radius: 10px;
+      }
+
+      .menu-toggle:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px var(--ring);
+      }
+
+      /* ==============================
+       LAYOUT
+       ============================== */
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: clamp(20px, 3.2vw, 28px);
+        margin-top: 24px;
+        align-items: start;
+      }
+
+      .card {
+        background: var(--surface);
+        padding: clamp(18px, 2.6vw, 24px);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-2);
+        line-height: 1.55;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+            80% 60% at 90% 0%,
+            rgba(255, 122, 0, 0.06),
+            rgba(255, 122, 0, 0) 40%
+          ),
+          radial-gradient(
+            80% 60% at 0% 100%,
+            rgba(255, 122, 0, 0.04),
+            rgba(255, 122, 0, 0) 40%
+          );
+        pointer-events: none;
+      }
+
+      h1 {
+        margin: 0 0 8px 0;
+        font-size: var(--h1);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+
+      .section h3 {
+        font-size: var(--h3);
+        margin: 0 0 8px 0;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .job {
+        padding: 12px;
+        border-radius: var(--radius-md);
+        background: #fff;
+        border: 1px solid var(--border);
+        transition: box-shadow var(--dur-1) var(--easing),
+          transform var(--dur-1) var(--easing);
+      }
+
+      .job:hover {
+        box-shadow: var(--shadow-1);
+        transform: translateY(-2px);
+      }
+
+      .job h4 {
+        margin: 0;
+      }
+
+      .badges {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .badges li {
+        background: #fff;
+        padding: 7px 12px;
+        border-radius: 999px;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        font-size: 0.85em;
+        transition: background var(--dur-1) var(--easing),
+          color var(--dur-1) var(--easing), transform var(--dur-1) var(--easing),
+          border-color var(--dur-1) var(--easing);
+      }
+
+      .badges li i {
+        margin-right: 0.2em;
+      }
+
+      .badges li:hover {
+        color: var(--text);
+        background: var(--accent-50);
+        border-color: #ffd5b0;
+        transform: translateY(-1px);
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .project {
+        padding: 12px;
+        border-radius: var(--radius-md);
+        background: #fff;
+        border: 1px solid var(--border);
+      }
+
+      .contact-list {
+        font-size: 14px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        color: var(--accent-600);
+        background: #fff;
+        border: 1px solid #ffd5b0;
+        transition: transform var(--dur-1) var(--easing),
+          box-shadow var(--dur-1) var(--easing),
+          background var(--dur-1) var(--easing),
+          color var(--dur-1) var(--easing),
+          border-color var(--dur-1) var(--easing);
+      }
+
+      .btn:hover {
+        background: var(--accent-50);
+        transform: translateY(-1px);
+        color: var(--accent-600);
+        box-shadow: var(--shadow-1);
+      }
+
+      footer {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: var(--small);
+        border-top: 1px solid var(--border);
+        padding-top: 16px;
+      }
+
+      hr {
+        height: 1px;
+        border: 0;
+        background: linear-gradient(
+          90deg,
+          rgba(255, 122, 0, 0),
+          rgba(255, 122, 0, 0.25),
+          rgba(255, 122, 0, 0)
+        );
+      }
+
+      /* ==============================
+       RESPONSIVE
+       ============================== */
+      .mobile-nav {
+        display: none;
+      }
+
+      @media (max-width: 880px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: inline-block;
+        }
+
+        .mobile-nav {
+          display: none;
+        }
+
+        .mobile-nav.open {
+          display: block;
+          margin-top: 12px;
+          padding: 12px;
+          border-radius: var(--radius-md);
+          background: #fff;
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow-1);
+          position: sticky;
+          top: 83px;
+          z-index: 100;
+        }
+        .mobile-nav nav {
+          background-color: transparent;
+          border: none;
+          box-shadow: none;
+        }
+
+        .mobile-nav nav a {
+          padding: 10px 12px;
+          border-radius: 10px;
+          display: block;
+          color: var(--muted);
+          text-decoration: none;
+        }
+
+        .mobile-nav nav a:hover {
+          background: var(--accent-50);
+          color: var(--text);
+        }
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <a href="/" style="text-decoration: none; color: inherit">
+            <div class="logo">AO</div>
+          </a>
+          <div>
+            <div style="font-weight: 700">Alexander Ortiz</div>
+            <div style="font-size: 12px; color: var(--muted)">
+              Data Science Student · Software Developer
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            aria-label="Open navigation"
+          >
+            <img src="/icons/hamburger.svg" alt="" width="30" height="30" />
+          </button>
+          <nav>
+            <a href=".">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <div class="grid">
+        <main>
+          <section class="card">
+            <h1>About me</h1>
+            <p class="muted">
+              Data Scientist & Software Developer (Rust, Node.js, Python) with
+              extensive expertise in data analysis, machine learning, and AI. I
+              specialize in building scalable REST APIs and microservices,
+              developing desktop tools, and delivering actionable insights
+              through data visualization and automation. Proficient in SQL/NoSQL
+              databases and advanced analytics using Python (pandas, polars),
+              Power BI, and Tableau. Experienced in designing and deploying
+              machine learning models, including neural networks and custom
+              algorithms, to drive business intelligence and innovation.
+            </p>
+
+            <div class="section">
+              <h3>Experience</h3>
+              <div class="timeline">
+                <div class="job">
+                  <h4>
+                    Business Devepment Representative — TP - Microsoft
+                    <span
+                      style="float: right; color: var(--muted); font-size: 13px"
+                      >Mar 2025 — Present</span
+                    >
+                  </h4>
+                  <p class="muted">
+                    Manage Microsoft licensing renewals in Dynamics 365;
+                    maintain pipeline hygiene and on-time renewals. Use
+                    data-driven cadences and reporting to improve retention and
+                    documentation quality.
+                  </p>
+                </div>
+
+                <div class="job">
+                  <h4>
+                    Baggage Recovery Specialist — IGT
+                    <span
+                      style="float: right; color: var(--muted); font-size: 13px"
+                      >Mar 2024 — Dec 2024</span
+                    >
+                  </h4>
+                  <p class="muted">
+                    Tracked and coordinated recovery of delayed baggage,
+                    communicating across passengers, airports, and logistics.
+                    Analyzed case data to accelerate resolution and improve SLA
+                    compliance.
+                  </p>
+                </div>
+
+                <div class="job">
+                  <h4>
+                    Independent Web Developer — Self-employed
+                    <span
+                      style="float: right; color: var(--muted); font-size: 13px"
+                      >Dec 2020 — Present</span
+                    >
+                  </h4>
+                  <p class="muted">
+                    Designed and developed web applications: React front ends
+                    and APIs with Node.js/Express and Python (FastAPI/Flask).
+                    Optimized performance, security, and scalability; delivered
+                    client features end-to-end.
+                  </p>
+                </div>
+
+                <div class="job">
+                  <h4>
+                    Supervisor / CSR — ATENTO COLOMBIA
+                    <span
+                      style="float: right; color: var(--muted); font-size: 13px"
+                      >Jul 2020 — Feb 2023</span
+                    >
+                  </h4>
+                  <p class="muted">
+                    Led teams in financial campaigns and automated reporting
+                    with Excel/Python; handled sensitive banking support cases
+                    and improved operational decision-making.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Education</h3>
+              <div class="muted">
+                <strong>Data Science Engineering</strong> — Universidad
+                Iberoamericana de Colombia (In progress)
+              </div>
+              <div class="muted" style="margin-top: 8px">
+                <strong>Business Intelligence and Excel (Certificate)</strong> —
+                Escuela Global (2022)
+              </div>
+            </div>
+
+            <div class="section">
+              <h3>Languages</h3>
+              <ul class="badges">
+                <li>Spanish — Native</li>
+                <li>English — Professional</li>
+                <li>French — Conversational</li>
+              </ul>
+            </div>
+          </section>
+        </main>
+
+        <aside>
+          <div class="card">
+            <h3 style="margin-top: 0; font-size: var(--h3)">Contact</h3>
+            <div class="contact-list muted">
+              <div>
+                <strong>Email:</strong>
+                <a
+                  href="mailto:alexander.ortiz2@outlook.com"
+                  style="color: var(--accent-600); text-decoration: none"
+                  >alexander.ortiz2@outlook.com</a
+                >
+              </div>
+              <div><strong>Phone:</strong> +57 315 572 4894</div>
+              <div style="margin-top: 8px">
+                <strong>Location:</strong> Bogotá, Colombia
+              </div>
+              <div style="margin-top: 8px">
+                <a
+                  href="https://www.linkedin.com/in/alexander-ortiz-cuellar-52b892219"
+                  target="_blank"
+                  style="color: var(--muted)"
+                  >LinkedIn</a
+                >
+                ·
+                <a
+                  href="https://github.com/alexanderortizcuellar"
+                  target="_blank"
+                  style="color: var(--muted)"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+
+            <hr
+              style="
+                margin: 14px 0;
+                border: 0;
+                height: 1px;
+                background: linear-gradient(
+                  90deg,
+                  rgba(255, 122, 0, 0),
+                  rgba(255, 122, 0, 0.25),
+                  rgba(255, 122, 0, 0)
+                );
+              "
+            />
+
+            <div>
+              <h4 style="margin: 6px 0; font-size: var(--h4)">Skills</h4>
+              <ul class="badges">
+                <li><i class="fa-brands fa-react"></i>React</li>
+                <li><i class="fa-brands fa-js"></i>JavaScript</li>
+                <li><i class="fa-brands fa-python"></i>Python</li>
+                <li><i class="fa-brands fa-node"></i>Node.js</li>
+                <li><i class="fa-solid fa-database"></i>SQL</li>
+                <li><i class="fa-solid fa-table"></i>Pandas</li>
+              </ul>
+            </div>
+
+            <div style="margin-top: 12px; text-align: center">
+              <a class="btn" href=".">← Back to home</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Alexander Ortiz — Built with HTML & CSS.
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Create mobile nav (mirrors index.html behavior)
+      const toggle = document.querySelector(".menu-toggle");
+      const mobileNav = document.createElement("div");
+      mobileNav.id = "mobile-nav";
+      mobileNav.className = "mobile-nav";
+      mobileNav.innerHTML = `
+      <nav style="display:flex;flex-direction:column;gap:8px">
+        <a href="/">Home</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    `;
+      document
+        .querySelector(".container")
+        .insertBefore(mobileNav, document.querySelector(".grid"));
+
+      toggle.addEventListener("click", () => {
+        const open = mobileNav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+      });
+
+      // Highlight current link (both navs)
+      function highlightLinks(scope) {
+        const links = scope.querySelectorAll("nav a[href]");
+        links.forEach((a) => {
+          const href = a.getAttribute("href");
+          const isRoot = href === "/" || href === ".";
+          const path = location.pathname;
+          if (
+            path.endsWith(href) ||
+            (isRoot && (path === "/" || path.endsWith("/index.html")))
+          ) {
+            a.classList.add("active");
+          }
+        });
+      }
+      highlightLinks(document);
+      highlightLinks(mobileNav);
+    </script>
+    </script>
+  </body>
+</html>
